@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: #badc57;
+  text-decoration: unset;
+}
+
+ul {
+  margin-left: 1.5rem;
+  list-style: none;
+}
+
+button,
+input[type='submit'] {
+  border: none;
+  background: none;
+  color: unset;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 1em 0;
+}
+
+/* General */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Header */
+#header {
+  display: flex;
+  background-color: #1287a5;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+#header .title {
+  margin-left: 1rem;
+}
+
+#header .auth-options {
+  height: 100%;
+  display: flex;
+}
+
+#header .auth-options button {
+  padding: 0 2rem;
+  background-color: #085e74;
+  color: #badc57;
+}
+
+#header .auth-options button:hover {
+  background-color: #154e5c;
+}
+
+@media only screen and (max-width: 550px) {
+  #header .title {
+    font-size: 10px;
+  }
+  #header .auth-options button {
+    padding: 0 1rem;
+  }
+}
