@@ -41,6 +41,14 @@ ol {
 body {
   font-family: 'Roboto', sans-serif;
 }
+.page {
+  padding: 1rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 /* Header */
 #header {
@@ -63,6 +71,7 @@ body {
 #header .auth-options button {
   padding: 0 2rem;
   background-color: #085e74;
+  border: none;
   color: #badc57;
 }
 
@@ -70,6 +79,62 @@ body {
   background-color: #154e5c;
 }
 
+/* Register Form */
+.form label,
+.form input {
+  display: block;
+}
+.form input {
+  margin-bottom: 1rem;
+}
+
+.form label {
+  margin-bottom: 0.2rem;
+}
+
+.form input[type='text'],
+.form input[type='password'],
+.form input[type='email'] {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 0.3rem;
+  border: 1px solid #8f8e8e;
+  background-color: #f7f2f2;
+  border-radius: 4px;
+}
+.form input:focus {
+  outline: none;
+  border: 1px solid #268ee4;
+}
+
+.form input[type='submit'] {
+  border: 1px solid greenyellow;
+  background-color: rgb(192, 212, 160);
+  padding: 0.3rem 0.5rem;
+  border-radius: 8px;
+}
+.error-notice {
+  background-color: rgb(252, 235, 235);
+  border: 1px solid indianred;
+  display: flex;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+}
+.error-notice span {
+}
+.error-notice button {
+  background-color: rgb(167, 18, 18);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media only screen and (max-width: 550px) {
   #header .title {
     font-size: 10px;

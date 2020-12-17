@@ -6,9 +6,9 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Header from './components/layout/Header';
 import UserContext from './context/UserContext';
+import { baseUrl } from './utils/baseUrl';
 import "./style.css";
 
-const baseUrl = "http://localhost:5000";
 //rafce
 const App = () => {
   const [userData, setUserData] = useState({
@@ -27,14 +27,12 @@ const App = () => {
       })
       if(tokenRes.data){
         const userRes = await Axios.get(baseUrl + "/users", {headers: {"x-auth-token": token}});
-        console.log("User Res:", userRes);
+        //console.log("User Res:", userRes);
         setUserData({
           token, 
           user: userRes.data
         })
-      } else {
-        console.log("Not logged in!");
-      }
+      } 
     }
     checkLoggedIn();
   }, []);
@@ -42,11 +40,13 @@ const App = () => {
     <BrowserRouter>
       <UserContext.Provider value={{userData, setUserData}}>
         <Header />
-        <Switch>
-          <Route path="/" component={Home} exact/>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route path="/" component={Home} exact/>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </Switch>
+        </div>
         </UserContext.Provider>
     </BrowserRouter>
   </>
