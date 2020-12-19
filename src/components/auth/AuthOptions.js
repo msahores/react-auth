@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
 
@@ -10,21 +10,22 @@ const AuthOptions = () => {
   const logout = () => {
     setUserData({
       token: undefined,
-      user: undefined
-    })
-    localStorage.setItem("x-auth-token", "");
+      user: undefined,
+    });
+    localStorage.setItem('x-auth-token', '');
   };
   return (
     <nav className="auth-options">
-      { userData.user ? 
-      <button onClick={logout}>Log Out</button> :
-      <>
-        <button onClick={register}>Register</button>
-        <button onClick={login}>Login</button>
-      </>
-      }
+      { userData.user
+        ? <button type="button" onClick={logout}>Log Out</button>
+        : (
+          <>
+            <button type="button" onClick={register}>Register</button>
+            <button type="button" onClick={login}>Login</button>
+          </>
+        )}
     </nav>
-  )
-}
+  );
+};
 
-export default AuthOptions
+export default AuthOptions;
