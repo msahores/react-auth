@@ -27,7 +27,6 @@ const App = () => {
       });
       if (tokenRes.data) {
         const userRes = await Axios.get(`${serverUrl}/users`, { headers: { 'x-auth-token': token } });
-        // console.log("User Res:", userRes);
         setUserData({
           token,
           user: userRes.data,

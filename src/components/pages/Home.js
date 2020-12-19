@@ -1,16 +1,15 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import UserContext from '../../context/UserContext';
 
 const Home = () => {
-  const { userData } = useContext(UserContext);
-  useEffect(()=>{
-    console.log(userData);
-  }, [userData]);
+  const {userData} = useContext(UserContext);
   return (
     <div className="page">
-     Hello {userData?.user?.displayName}   
+     {userData.user && 'Hello '}
+     {userData?.user?.displayName}   
     </div>
   )
 }
 
-export default Home
+export default Home;
+  
