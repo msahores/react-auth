@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
-import serverUrl from '../../utils/baseUrl';
 import ErrorNotice from '../misc/ErrorNotice';
 
 const Login = () => {
@@ -15,15 +14,16 @@ const Login = () => {
     e.preventDefault();
     try {
       const loginUser = { email, password };
-      const loginRes = await Axios.post(`${serverUrl}/users/login`, loginUser);
+      const loginRes = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/users/login`, loginUser);
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
+        isAuthenticated: true, 
       });
       localStorage.setItem('auth-token', loginRes.data.token);
       history.push('/');
     } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+      err?.response?.data?.msg && setError(err?.response?.data?.msg);
     }
   };
   return (

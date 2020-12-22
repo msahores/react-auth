@@ -6,14 +6,13 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Header from './components/layout/Header';
 import UserContext from './context/UserContext';
-import serverUrl from './utils/baseUrl';
 import './style.css';
 
-// rafce
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
+    isAuthenticated: false,
   });
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -22,14 +21,15 @@ const App = () => {
         localStorage.setItem('auth-token', '');
         token = '';
       }
-      const tokenRes = await Axios.post(`${serverUrl}/users/tokenIsValid`, null, {
+      const tokenRes = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/users/tokenIsValid`, null, {
         headers: { 'x-auth-token': token },
       });
       if (tokenRes.data) {
-        const userRes = await Axios.get(`${serverUrl}/users`, { headers: { 'x-auth-token': token } });
+        const userRes = await Axios.get(`${process.env.REACT_APP_SERVER_URL}/users`, { headers: { 'x-auth-token': token } });
         setUserData({
           token,
           user: userRes.data,
+          isAuthenticated: true,
         });
       }
     };
@@ -42,7 +42,7 @@ const App = () => {
           <Header />
           <div className="container">
             <Switch>
-              <Route path="/" component={Home} exact />
+              {userData.isAuthenticated ? <Route path="/" component={Home} exact /> : <Route path="/" component={Login} exact />}
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
             </Switch>

@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
-import serverUrl from '../../utils/baseUrl';
 import ErrorNotice from '../misc/ErrorNotice';
 
 const Register = () => {
@@ -20,14 +19,15 @@ const Register = () => {
       const newUser = {
         email, password, passwordCheck, displayName,
       };
-      await Axios.post(`${serverUrl}/users/register`, newUser);
-      const loginRes = await Axios.post(`${serverUrl}/users/login`, {
+      await Axios.post(`${process.env.REACT_APP_SERVER_URL}/users/register`, newUser);
+      const loginRes = await Axios.post(`${process.env.serverUrl}/users/login`, {
         email,
         password,
       });
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
+        isAuthenticated: true,
       });
       localStorage.setItem('auth-token', loginRes.data.token);
       history.push('/');
