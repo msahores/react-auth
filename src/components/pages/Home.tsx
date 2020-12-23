@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, FC } from 'react'
 import UserContext from '../../context/UserContext';
 
-const Home = () => {
+const Home: FC = () => {
   const {userData} = useContext(UserContext);
   return (
     <div className="page">

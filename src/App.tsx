@@ -5,18 +5,18 @@ import Home from './components/pages/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Header from './components/layout/Header';
-import UserContext from './context/UserContext';
+import UserContext, { UserDataI } from './context/UserContext';
 import './style.css';
 
 const App = () => {
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<UserDataI>({
     token: undefined,
     user: undefined,
     isAuthenticated: false,
   });
   useEffect(() => {
     const checkLoggedIn = async () => {
-      let token = localStorage.getItem('auth-token');
+      let token:string | null = localStorage.getItem('auth-token');
       if (token === null) {
         localStorage.setItem('auth-token', '');
         token = '';
@@ -38,7 +38,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <UserContext.Provider value={{ userData, setUserData }}>
+        <UserContext.Provider value={{userData, setUserData}}>
           <Header />
           <div className="container">
             <Switch>

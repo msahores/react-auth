@@ -1,26 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, FormEvent } from 'react';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/UserContext';
 import ErrorNotice from '../misc/ErrorNotice';
 
 const Register = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [passwordCheck, setPasswordCheck] = useState();
-  const [displayName, setDisplayName] = useState();
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const [passwordCheck, setPasswordCheck] = useState<string>();
+  const [displayName, setDisplayName] = useState<string>();
   const [error, setError] = useState();
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
-  const submit = async (e) => {
+  const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const newUser = {
         email, password, passwordCheck, displayName,
       };
       await Axios.post(`${process.env.REACT_APP_SERVER_URL}/users/register`, newUser);
-      const loginRes = await Axios.post(`${process.env.serverUrl}/users/login`, {
+      const loginRes = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/users/login`, {
         email,
         password,
       });

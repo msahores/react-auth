@@ -5,12 +5,12 @@ import UserContext from '../../context/UserContext';
 import ErrorNotice from '../misc/ErrorNotice';
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
   const [error, setError] = useState();
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
-  const submit = async (e) => {
+  const submit = async (e: any) => {
     e.preventDefault();
     try {
       const loginUser = { email, password };
