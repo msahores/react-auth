@@ -7,6 +7,7 @@ import Register from './components/auth/Register';
 import Header from './components/layout/Header';
 import UserContext, { UserDataI } from './context/UserContext';
 import './style.css';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   const [userData, setUserData] = useState<UserDataI>({
@@ -42,9 +43,9 @@ const App = () => {
           <Header />
           <div className="container">
             <Switch>
-              {userData.isAuthenticated ? <Route path="/" component={Home} exact /> : <Route path="/" component={Login} exact />}
               <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
+              <Route path="/register" component={Register} /> 
+              <ProtectedRoute path="/" component={Home} /> 
             </Switch>
           </div>
         </UserContext.Provider>
