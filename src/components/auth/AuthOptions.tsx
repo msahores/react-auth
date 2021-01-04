@@ -11,8 +11,9 @@ const AuthOptions = () => {
     setUserData({
       token: undefined,
       user: undefined,
+      isAuthenticated: false,
     });
-    localStorage.setItem('x-auth-token', '');
+    localStorage.setItem('auth-token', '');
   };
   return (
     <nav className="auth-options">

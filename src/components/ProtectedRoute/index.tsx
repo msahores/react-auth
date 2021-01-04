@@ -1,20 +1,20 @@
-import React, { useContext, FC } from 'react';
+import React, { FC } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import UserContext from '../../context/UserContext';
 
 interface Props {
+  condition: boolean,
   component: any, 
-  path: string
+  redirectTo: string,
+  path?: string, 
+  exact?: boolean
 }
 
-const ProtectedRoute:FC<Props> = ({ component: Component, ...rest }) => {
-  const { userData } = useContext(UserContext);
-  return (
-  <Route {...rest} render={props => (
-     userData.isAuthenticated === true ? 
-        <Component {...rest} {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location }}} />   
-  )} />
-);
-  }
+const ProtectedRoute: FC<Props> = ({ condition = false, component: Component, redirectTo, exact = false, ...rest }) => (
+    <Route {...rest} exact render={props => (
+      condition ?
+          <Component {...rest} {...props} /> : 
+          <Redirect to={{ pathname: redirectTo, state: { from: props.location }}} />   
+    )} />
+  );
 
 export default ProtectedRoute;
